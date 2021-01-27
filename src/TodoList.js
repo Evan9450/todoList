@@ -1,26 +1,62 @@
+import { Button, TextField } from '@material-ui/core';
 import React, { Component } from 'react';
 import { addItemAction, deleteItemAction, getInputChangeAction } from './store/actionCreators';
 
+import Checkbox from '@material-ui/core/Checkbox';
+// import CommentIcon from '@material-ui/icons/Comment';
+import IconButton from '@material-ui/core/IconButton';
+// import React from 'react';
+// import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
 import { connect } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import store from './store';
 
 class TodoList extends Component {
- render() {
+    render() {
+        // const classes = useStyles();
         return (
             <div>
                 <div>
-                    <input value={this.props.inputValue} onChange={this.props.changeInputValue} />
-                    <button onClick={this.props.handleClick}>提交</button>
+                    <TextField
+                        // className="mt-4 mb-16"
+                        variant="outlined"
+                        value={this.props.inputValue}
+                        onChange={this.props.changeInputValue}
+                        style={{
+                            marginLeft: '10px',
+                            marginRight: '10px',
+                            height: '10px',
+                            width: '300px',
+                        }}
+                    />
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.props.handleClick}
+                        style={{
+                            marginLeft: '10px',
+                            marginRight: '10px',
+                            height: '55px',
+                            width: '100px',
+                        }}
+                    >
+                        提交
+                    </Button>
                 </div>
-                <ul>
+                <List>
                     {this.props.list.map((item, index) => {
                         return (
-                            <li onClick={this.props.handleDelete} key={index}>
+                            <ListItem onClick={this.props.handleDelete} key={index}>
                                 {item}
-                            </li>
+                            </ListItem>
                         );
                     })}
-                </ul>
+                </List>
             </div>
         );
     }
